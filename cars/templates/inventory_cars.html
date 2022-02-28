@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+
+	<!-- Header Start -->
+    {% block header %}
+
+    {% include "header.html" %}
+      
+    {% endblock header %}
+
+<div class="row">
+
+    <br>
+    <br>
+    <h2 style="color: rgb(223, 39, 39) !important; margin-left: 20px !important;">Invertory Cars </h2>
+
+    {% for car  in inventory_cars %}
+
+
+
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="auto-listing auto-grid">
+            <div class="cs-media">
+                <figure> <img src="{{car.image_main.url }}" alt="#"/>
+        
+                </figure>
+            </div>
+            <div class="auto-text"> <span class="cs-categories"><a href="#">{{car.category}}</a></span>
+                <div class="post-title">
+                    <h6><a href="#">{{car.brand}} </a></h6>
+                    <div class="auto-price"><span class="cs-color">${{car.price}}</span></div>
+                </div>
+                <i class="icon-car228 cs-color" style="font-size: 15px;"></i>{{car.transission}}
+                 <br>
+                 Year : {{car.year}}
+        
+                <a href="{{car.get_absolute_url}}" class="View-btn">View Detail<i class=" icon-arrow-long-right"></i></a> </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+</div>
+
+
+
+<div class="pagination">
+    <span class="step-links">
+
+        
+      {% if page_obj.has_other_pages %}
+      <!--Pagination-->
+      <nav class="d-flex justify-content-center wow fadeIn">
+        <ul class="pagination pg-blue">
+
+          {% if page_obj.has_previous %}
+            <!--Arrow left-->
+            <li class="page-item ">
+              <a class="page-link" href="?page={{page_obj.previous_page_number}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+          {% else %}
+            <li class="page-item disabled"></li>
+          {% endif %}
+
+          {% for pages in page_obj.paginator.page_range %}
+            {% if page_obj.number == pages %}
+              <li class="page-item ">
+                <a class="page-link" href="#">{{pages}}</a>
+              </li>
+              {% else %}
+              <li class="page-item"><a class="page-link current" href="?page={{pages}}">{{pages}}</a></li>
+            {% endif %}    
+          {% endfor %}
+
+          {% if product_list.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{page_obj.next_page_number}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+            {% else %}
+              <li class="page-item disabled"></li>
+          {% endif %}
+        </ul>
+      </nav>
+      <!--Pagination-->
+      {% endif %}
+    </span>
+</div>
+
+  
+{% endblock content  %}

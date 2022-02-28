@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% block header %}
+
+{% include "header.html" %}
+  
+{% endblock header %}
+
+
+<div class="container">
+    
+<br> Dealer : {{ cars.dealer.name }}
+<br> Dealer mail : {{ cars.dealer.email }}
+<br> Brand :  {{cars.brand}}
+<br> Category : {{cars.category}}
+<br> Miles  : {{cars.miles}}
+<br> Transmission : {{cars.transission}}
+<br> Year : {{cars.year}}
+<br> Power : {{cars.power}} hp
+<br> Fuel : {{cars.fuel}} l 
+<h3>Price : {{ cars.price }}$</h3>
+<p>Description : {{cars.description }} </p>
+
+
+<br>
+<div class="row">
+
+     
+   {% if cars.image1 %}
+
+   <div class="col-md-3">
+       <img src="{{cars.image1.url }} " alt="">
+   </div>
+       
+   {% endif %}   
+      
+   {% if cars.image2 %}
+
+   <div class="col-md-3">
+       <img src="{{cars.image2.url }} " alt="">
+   </div>
+       
+   {% endif %}   
+
+      
+   {% if cars.image3 %}
+
+   <div class="col-md-3">
+       <img src="{{cars.image3.url }} " alt="">
+   </div>
+       
+   {% endif %}  
+      
+   {% if cars.image4 %}
+
+   <div class="col-md-3">
+       <img src="{{cars.image4.url }} " alt="">
+   </div>
+       
+   {% endif %}    
+      
+   {% if cars.image5 %}
+
+   <div class="col-md-3">
+       <img src="{{cars.image5.url }} " alt="">
+   </div>
+       
+   {% endif %}   
+  
+</div>
+
+</div>
+{% block footer %}
+
+{% include "footer.html" %}
+  
+{% endblock footer %}
+
+{% endblock content %}
